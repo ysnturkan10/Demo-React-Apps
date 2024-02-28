@@ -1,0 +1,66 @@
+body{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+#sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #696969;
+  color:white;
+  width: 22rem;
+  text-align: center;
+}
+
+#sidebar button{
+  width: 10rem;
+  height: 3rem;
+}
+
+.main-menu{
+  text-align: center;
+}
+
+#form{
+  text-align: center;
+}
+
+#form label{
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#form input{
+  margin-bottom: 1rem;
+  width: 20rem;
+
+}
+
+#form input.title,input.date{
+  height: 2rem;
+}
+
+#form input.description{
+  height: 9rem;
+}
+
+#form button{
+  display: inline;
+ margin-bottom: 1.5rem;
+  
+}
+
+.btns{
+  display: flex;
+  flex-direction: row;
+width: 20rem;
+justify-content: end;
+margin-right:auto ;
+margin-left: auto;
+}
+
+#pro-page{
+  text-align: center;
+}
