@@ -16,7 +16,10 @@ export default function Product() {
       {isAdded && <Alert />}
 
       <ul id="meals">
-        {isLoading ? <p className="center">Please wait...</p> : items &&
+        {isLoading ? (
+          <p className="center">Please wait...</p>
+        ) : (
+          items &&
           items.length >= 1 &&
           items.map((item, i) => {
             const itemId = item.id;
@@ -47,7 +50,8 @@ export default function Product() {
                 </article>
               </li>
             );
-          })}
+          })
+        )}
       </ul>
     </>
   );

@@ -8,7 +8,7 @@ export default function Header() {
   const dialog = useRef();
   const { cartItems } = useContext(ProductContext);
   const { handleCartOpen, isCartOpen } = useContext(CartContext);
-  const cartItemCount =cartItems && cartItems.length;
+  const cartItemCount = cartItems && cartItems.length;
 
   function handleCart() {
     handleCartOpen();

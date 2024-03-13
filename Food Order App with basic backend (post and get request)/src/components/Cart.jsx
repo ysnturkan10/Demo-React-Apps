@@ -45,9 +45,11 @@ const Cart = forwardRef(function ({}, ref) {
     return () => modalForm.closeForm();
   }, [isFormOpen]);
 
-  const totalPrice = cartItems && cartItems.reduce((acc, item) => {
-    return (acc += Math.round(+item.price) * item.quantity);
-  }, 0);
+  const totalPrice =
+    cartItems &&
+    cartItems.reduce((acc, item) => {
+      return (acc += Math.round(+item.price) * item.quantity);
+    }, 0);
 
   return (
     <>
@@ -56,7 +58,7 @@ const Cart = forwardRef(function ({}, ref) {
           <h2>Your Cart</h2>
 
           <ul>
-            {(cartItems && cartItems.length >= 1) ? (
+            {cartItems && cartItems.length >= 1 ? (
               cartItems.map((cartItem, i) => {
                 return <CartItem key={Math.random()} cartItem={cartItem} />;
               })

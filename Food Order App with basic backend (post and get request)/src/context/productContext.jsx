@@ -3,7 +3,7 @@ export const ProductContext = createContext({
   items: [],
   cartItems: [],
   error: false,
-  isAdded:false
+  isAdded: false,
 });
 function productInfosReducer(state, action) {
   switch (action.type) {
@@ -26,7 +26,7 @@ function productInfosReducer(state, action) {
       return {
         ...state,
         cartItems: [...state.cartItems, updatedCartItem],
-        isAdded:false
+        isAdded: false,
       };
     }
 
@@ -34,7 +34,7 @@ function productInfosReducer(state, action) {
       const currentIndex = state.cartItems.findIndex(
         (element) => element.id == action.payload.id
       );
-      const cartItemsClone = structuredClone(state.cartItems) 
+      const cartItemsClone = structuredClone(state.cartItems);
 
       cartItemsClone[currentIndex] = {
         ...cartItemsClone[currentIndex],
@@ -44,7 +44,7 @@ function productInfosReducer(state, action) {
       return {
         ...state,
         // cartItems: [...state.cartItems],
-        cartItems:[...cartItemsClone]
+        cartItems: [...cartItemsClone],
       };
     }
 
@@ -89,17 +89,16 @@ function productInfosReducer(state, action) {
     case "goToCart": {
       return {
         ...state,
-        isAdded:true,
+        isAdded: true,
       };
     }
 
     case "closeAlert": {
       return {
         ...state,
-        isAdded:false,
+        isAdded: false,
       };
     }
-
 
     default: {
       state;
@@ -108,19 +107,16 @@ function productInfosReducer(state, action) {
 }
 
 export default function ProductContextProvider({ children }) {
-  const[loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
   const [productInfos, productInfosDispatch] = useReducer(productInfosReducer, {
     items: [],
     cartItems: [],
     error: false,
-    isAdded:false
+    isAdded: false,
   });
   useEffect(() => {
-
     async function getProducts() {
-      
       try {
-
         const response = await fetch("http://localhost:3000/meals");
         const data = await response.json();
         if (!response.ok) {
@@ -136,24 +132,26 @@ export default function ProductContextProvider({ children }) {
       }
     }
     getProducts();
-    setLoading(false)
+    setLoading(false);
   }, []);
 
   console.log(loading);
 
   function handleAddCartItem(food, e) {
-    const isInclude = productInfos.cartItems.filter((item)=>item.id===food.id)
-    if(isInclude.length==0){
+    const isInclude = productInfos.cartItems.filter(
+      (item) => item.id === food.id
+    );
+    if (isInclude.length == 0) {
       productInfosDispatch({
         type: "addToCart",
         payload: food,
       });
-    }else{
+    } else {
       productInfosDispatch({
-        type:"goToCart"
-      })
+        type: "goToCart",
+      });
     }
-   
+
     // e.currentTarget.disabled = true;
   }
   function decreaseCartItemQuantity(item) {
@@ -170,10 +168,10 @@ export default function ProductContextProvider({ children }) {
     });
   }
 
-  function closeAlert (){
+  function closeAlert() {
     productInfosDispatch({
-      type:"closeAlert"
-    })
+      type: "closeAlert",
+    });
   }
   const ctxValue = {
     items: productInfos.items,
@@ -182,10 +180,9 @@ export default function ProductContextProvider({ children }) {
     decreaseButton: decreaseCartItemQuantity,
     increaseButton: increaseCartItemQuantity,
     error: productInfos.error,
-    isLoading:loading,
-    isAdded:productInfos.isAdded,
+    isLoading: loading,
+    isAdded: productInfos.isAdded,
     closeAlert,
-
   };
   return (
     <>
