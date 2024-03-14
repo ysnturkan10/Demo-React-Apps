@@ -1,9 +1,17 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import { ThemeContext } from "../App";
+import Cart from "./Cart";
+import { ProductContext } from "../context/ProductContext";
 
 export default function Header() {
   const theme = useContext(ThemeContext);
+  const {cartItems} = useContext(ProductContext)
+  const dialog = useRef()
+const cartCount = cartItems && cartItems.length
+  function dialogHandle(){
+    dialog.current.open()
+  }
   return (
     <>
       <header id="header" className="">
@@ -12,6 +20,18 @@ export default function Header() {
         >
           Corporation
         </h1>
+        <div className="cartButton">
+          <div>
+          <button
+          onClick={dialogHandle}
+            className={theme === "light" ? "cart-btn light-text" : "cart-btn dark-text"}
+          >
+            {" "}
+            Cart({cartCount})
+          </button>{" "}
+          </div>
+        </div>
+
         <ul>
           <li>
             <NavLink
@@ -72,6 +92,8 @@ export default function Header() {
           </li>
         </ul>
       </header>
+      <Cart ref={dialog}/>
+
       <Outlet />
     </>
   );

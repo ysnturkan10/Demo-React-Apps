@@ -7,9 +7,7 @@ import { createContext, useState } from "react";
 import SwitchButton from "./components/SwitchButton";
 import ProductContextProvider from "./context/ProductContext";
 
-
 export const ThemeContext = createContext("light");
-
 
 const router = createBrowserRouter([
   {
@@ -23,31 +21,29 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  const [theme,setTheme] = useState("light")
-  if(theme==="dark"){
-    document.querySelector("body").style.background = 'rgb(63, 63, 63)'
-  }else{
-    document.querySelector("body").style.background = 'white'
-
+  const [theme, setTheme] = useState("light");
+  if (theme === "dark") {
+    document.querySelector("body").style.background = "rgb(83, 83, 83)";
+  } else {
+    document.querySelector("body").style.background = "white";
   }
 
-  function changeTheme (){
+  function changeTheme() {
     let isChecked = document.getElementById("checkbox").checked;
-    if(isChecked){
-      setTheme(pre=> pre="light")
-    }else{
-      setTheme(pre=> pre="dark")
+    if (isChecked) {
+      setTheme((pre) => (pre = "light"));
+    } else {
+      setTheme((pre) => (pre = "dark"));
     }
-
   }
 
   return (
     <>
-    <ThemeContext.Provider value={theme}>
-      <ProductContextProvider>
-      <SwitchButton changeTheme={changeTheme} />
-      <RouterProvider router={router} />
-      </ProductContextProvider>
+      <ThemeContext.Provider value={theme}>
+        <ProductContextProvider>
+          <SwitchButton changeTheme={changeTheme} />
+          <RouterProvider router={router} />
+        </ProductContextProvider>
       </ThemeContext.Provider>
     </>
   );
