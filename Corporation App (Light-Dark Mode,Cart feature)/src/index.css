@@ -3,12 +3,6 @@
   margin: auto;
   padding: 0;
 }
-/* #root{
- height: 150vh;
-} */
-/* body{
-  background-color: rgb(190, 186, 186);
-} */
 .switch {
   position: relative;
   display: inline-block;
@@ -67,14 +61,20 @@ input:checked + .slider:before {
 }
 #header {
   margin-bottom: 4rem;
+  text-align: center;
 }
 #header ul {
+  height: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+#header li {
+  width: 10rem;
   height: 5rem;
 }
 #header a {
   text-decoration: none;
   /* color: black; */
-  width: 10rem;
   padding: 0.5rem;
 }
 .light {
@@ -197,6 +197,7 @@ header ul li {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 .products-container img {
@@ -253,16 +254,14 @@ header ul li {
 #about {
   text-align: center;
   width: 50%;
-  margin: 5rem auto auto auto;
+  margin-top: 4rem;
 }
 .cartButton {
   display: flex;
-  margin-left: 70%;
+  margin-left: 65%;
   margin-bottom: 2rem;
   align-items: center;
   height: 5rem;
-  
-  
 }
 .cart-btn {
   font-size: 2rem;
@@ -280,37 +279,61 @@ header ul li {
 .cart-btn.dark-text:hover {
   color: black;
 }
-#cart{
+#cart {
   font-size: 2rem;
   padding: 2rem;
   padding-top: 4rem;
-
+  text-align: center;
 }
-#cart h2{
-margin-bottom: 2rem;
-
+#cart h2 {
+  margin-bottom: 2rem;
 }
-#cart ul{
+#cart ul {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
 #cart li {
   display: flex;
-  align-items: center ;
+  align-items: center;
   margin-top: 1rem;
+  flex-direction: row;
 }
 
+#cart button {
+  margin: 0 2rem;
+}
 
-#cart button{
-margin: 0 2rem;}
-
-.cancel-btn{
+.cancel-btn {
   position: absolute;
   right: 1rem;
   top: 1rem;
   font-size: 1.5rem;
 }
 
+@media only screen and (max-width: 597px) {
+  .products-container {
+    margin-top: 11.35rem;
+  }
+  #about{
+    margin-top: 10rem;
+  }
+  .container{
+    margin-top: 10rem;
+  }
 
+}
 
+@media only screen and (max-width: 407px) {
+  .products-container {
+    margin-top: 11.35rem;
+  }
+  #about{
+    margin-top: 15rem;
+  }
+  .container{
+    margin-top: 15rem;
+  }
 
+}
 

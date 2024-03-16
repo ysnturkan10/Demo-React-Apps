@@ -1,17 +1,20 @@
 import { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import { ThemeContext } from "../App";
 import { ProductContext } from "../context/ProductContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Cart = forwardRef(function ({}, ref) {
+const Cart = forwardRef(function (props, ref) {
   const theme = useContext(ThemeContext);
-  const { cartItems,increaseQuantity,decreaseQuantity } = useContext(ProductContext);
+  const { cartItems, increaseQuantity, decreaseQuantity } = useContext(
+    ProductContext
+  );
   const dialog = useRef();
   const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity,
-    0,
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
+    0
   );
 
   useImperativeHandle(
@@ -49,13 +52,15 @@ const Cart = forwardRef(function ({}, ref) {
               : "button button1 cancel-btn dark"
           }
         >
-        x
+          x
         </button>
         <h2>Your Cart</h2>
         {cartItems && cartItems.length == 0 ? (
           <>
             {" "}
-            <p style={{textAlign:"center",marginBottom:"5rem"}}>Your cart is empty</p>
+            <p style={{ textAlign: "center", marginBottom: "5rem" }}>
+              Your cart is empty
+            </p>
             <p>
               <button
                 className={
@@ -77,16 +82,30 @@ const Cart = forwardRef(function ({}, ref) {
               cartItems.map((cartItem) => {
                 return (
                   <li key={cartItem.id + "c"}>
-                   <p style={{marginRight:"1rem"}}>{cartItem.header} -(${+cartItem.price})-</p> {" "}
+                    <p style={{ marginRight: "1rem" }}>
+                      {cartItem.header} -(${+cartItem.price})-
+                    </p>{" "}
                     <div>
-                      <button onClick={()=> decreaseQuantity(cartItem.id)} className="button button1 dark">-</button>
+                      <button
+                        onClick={() => decreaseQuantity(cartItem.id)}
+                        className="button button1 dark"
+                      >
+                        -
+                      </button>
                       <span> {cartItem.quantity}</span>{" "}
-                      <button onClick={()=> increaseQuantity(cartItem.id)} className="button button1 dark">+</button>
+                      <button
+                        onClick={() => increaseQuantity(cartItem.id)}
+                        className="button button1 dark"
+                      >
+                        +
+                      </button>
                     </div>{" "}
                   </li>
                 );
               })}
-              <p style={{marginTop:"2rem",textAlign:"center"}}>Total Price:${totalPrice}</p>
+            <p style={{ marginTop: "2rem", textAlign: "center" }}>
+              Total Price:${totalPrice}
+            </p>
           </ul>
         )}
       </div>
